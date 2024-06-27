@@ -9,6 +9,7 @@
 #define REG_TXRTSCTRL              0x0d
 
 #define REG_CANCTRL                0x0f
+#define REG_CANSTAT                0x0e
 
 #define REG_CNF3                   0x28
 #define REG_CNF2                   0x29
@@ -143,7 +144,7 @@ int MCP2515Class::begin(long baudRate)
   writeRegister(REG_RXBnCTRL(1), FLAG_RXM1 | FLAG_RXM0);
 
   writeRegister(REG_CANCTRL, 0x00);
-  if (readRegister(REG_CANCTRL) != 0x00) {
+  if (readRegister(REG_CANSTAT) != 0x00) {
     return 0;
   }
 
